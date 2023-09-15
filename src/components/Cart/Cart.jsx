@@ -5,19 +5,22 @@
 const Cart = ({selectedCourse, totalHour, totalRemainingHour }) => {
     console.log(selectedCourse);
     return(
-         <div className="w-72 p-5">
-            <h2>   Credit Hour Remaining {totalRemainingHour} hr</h2>
+         <div className="w-72 p-5 text-start">
+            <h2 className="text-lg font-semibold text-blue-500 py-3">   Credit Hour Remaining {totalRemainingHour} hr</h2>
             <hr />
             {
-                selectedCourse.map((course) => (
-                 <li key={course.id}>
-                    {course.title}
+                <ul className="py-3">
+                {selectedCourse.map((course, index) => (
+                    <li key={course.id}>
+                        {index + 1}. {course.title}
                     </li>
-                ))
+                ))}
+            </ul>
+                
             // eslint-disable-next-line react/jsx-no-comment-textnodes
             }
             <hr />
-            Total Credit Hour : {totalHour}
+            <h2 className="text-lg font-medium">Total Credit Hour : {totalHour}</h2>
          </div>
      );
 };
