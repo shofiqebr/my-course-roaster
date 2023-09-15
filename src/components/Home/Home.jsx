@@ -1,8 +1,12 @@
 /* eslint-disable react/jsx-key */
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import { BsBook } from 'react-icons/bs';
 import { PiCurrencyDollar } from "react-icons/pi";
 import Cart from './../Cart/Cart';
+
+
 const Home = () => {
     const [allCourses, setAllCourses] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState([]);
@@ -19,7 +23,7 @@ const Home = () => {
 
             let count = course.credit;
             if(isExist){
-              return  alert("already included");
+               return toast.error('Course already selected!');
             }
             else{
                 selectedCourse.forEach((item)=>{
@@ -29,7 +33,7 @@ const Home = () => {
             const totalRemaining = 20-count;
 
             if(count>20){
-                return alert("no remaining credit") 
+               return toast.error('No remaining credit!');
             }
             else{
                 setTotalHour(count);
@@ -80,7 +84,7 @@ const Home = () => {
                 <Cart selectedCourse={selectedCourse} totalHour={totalHour} totalRemainingHour={totalRemainingHour}></Cart>
             </div>
 
-
+            <ToastContainer />
 
         </div>
     );
